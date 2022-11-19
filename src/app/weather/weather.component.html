@@ -1,0 +1,70 @@
+<div class="container">
+
+  <section class="vh-100" style="background-color: #4B515D;">
+
+    <div class="container py-3  ">
+      <div class="row d-flex justify-content-center align-items-center h-50">
+        <div class="col-md-10 col-lg-6 col-xl-9">
+          <div class="card" style="color: #4B515D; border-radius: 15px; width: 70%; display: inline-block;">
+            <input type="text" placeholder="Enter City" name="city" id="city"
+              style="color: #4B515D; border-radius: 15px;  width: 100%; height: 50px; padding: 25px;"
+              [(ngModel)]="city"  (change)="Changed(city)"  (keyup)="Changed(city)">
+          </div>
+          <button type="button" class="btn btn-success" style=" border-radius: 35px;float: right;height: 53px;"
+            (click)="check(city)"> check</button>
+        </div>
+        <div class="row d-flex justify-content-center " *ngIf="showError">
+          <div class="alert alert-custom" role="alert" style="width: 30%; margin-top: 20px;">
+            {{error}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container py-2  vh-100" *ngIf="showData">
+
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 col-lg-6 col-xl-9">
+
+          <div class="card" style="color: #4B515D; border-radius: 35px;">
+            <div class="card-body p-70">
+
+              <div class="d-flex">
+                <h1 class="flex-grow-1">{{WeatherData['name']}}</h1>
+                <h4>{{WeatherData['date'] | date: 'dd-MM-yy / hh:mm'}}</h4>
+              </div>
+
+              <div class="d-flex flex-column text-center mt-1 mb-4">
+                <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;font-size: 1rem;"> Temp :
+                  {{WeatherData['temp']}}°C </h6>
+                <span class="small" style="color: #868B94">{{WeatherData['weather']}}</span>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1" >
+                  <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> Wind Speed :
+                      {{WeatherData['windSpeed']}} km/h
+                    </span></div>
+                    <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> Humidity :
+                      {{WeatherData['humidity']}}</span>
+                  </div>
+                  <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> 
+                    SUNRISE/SUNSET : {{WeatherData['sunrise'] | date: 'hh:mm'}} / {{WeatherData['sunset'] | date: 'hh:mm'}}
+                   </span>
+                  </div>                
+                </div>
+                <div style="border: 1px solid #eee;  border-radius: 15px;">
+                  <img src="http://openweathermap.org/img/w/{{WeatherData['icon']}}.png">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
